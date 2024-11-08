@@ -14,41 +14,49 @@
 <body>
 
   <main>
-    <img src="/img/bag.png" alt="sacola de compras">
-    <form action="">
-      <input class="input-item" id="input-item" type="text" placeholder="Digite o item que deseja adicionar">
-      <button class="add-button" id="add-button">Salvar item</button>
-    </form>
-
-    <ul id="lista-de-compras">
-      <h2>Lista de compras</h2>
-      <hr />
-      <li>
-        <div class="item-lista-container">
-          <div class="container-nome-compra">
-            <div class="checkbox-container">
-              <label for="checkbox-1">
-                <input type="checkbox" class="checkbox-input" id="checkbox-1"/>
-                <div class="checkbox-customizado checked"> </div>
-              </label>
+      <img src="/img/bag.png" alt="sacola de compras">
+      <form action="">
+        <input class="input-item" id="input-item" type="text" placeholder="Digite o item que deseja adicionar">
+        <button class="add-button" id="add-button">Salvar item</button>
+      </form>
+      
+      <ul id="lista-de-compras">
+        <h2>Lista de compras</h2>
+        <hr />
+        <li>
+          <div class="item-lista-container">
+            <div class="container-nome-compra">
+              <div class="checkbox-container">
+                <label for="checkbox-1">
+                  <input type="checkbox" class="checkbox-input" id="checkbox-1"/>
+                  <div class="checkbox-customizado checked"> </div>
+                </label>
+              </div>
+              <p>Ração de gato</p>
             </div>
-            <p>Ração de gato</p>
+            <div>
+              <button class="button-action">
+                <img src="/img/delete.svg" alt="deletar">
+              </button>
+              <button class="button-action">
+                <img src="/img/edit.svg" alt="editar">
+              </button>
+            </div>
           </div>
-          <div>
-            <button class="button-action">
-              <img src="/img/delete.svg" alt="deletar">
-            </button>
-            <button class="button-action">
-              <img src="/img/edit.svg" alt="editar">
-            </button>
-          </div>
-        </div>
-        <p class="item-lista-texto">Segunda-feira (31/01) às 08:30</p>
-      </li>
-    </ul>
+          <p class="texto-data">Segunda-feira (31/01) às 08:30</p>
+        </li>
+      </ul>
+
+      <h2>Comprado</h2>
+      <hr />
+      <ul id="lista-comprados">
+
+
+      </ul>
+    
   </main>
 
-  <script src="/Styles/scripts.js"></script>
+  <script src="/js/scripts.js" type="module"></script>
 </body>
 
 

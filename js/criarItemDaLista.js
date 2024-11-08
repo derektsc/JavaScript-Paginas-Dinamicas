@@ -1,13 +1,7 @@
-const item = document.getElementById("input-item");
-const save = document.getElementById("add-button");
-const listaDeCompras = document.getElementById("lista-de-compras");
+const listaComprados = document.getElementById("lista-comprados");
 let contador = 0;
 
-save.addEventListener("click", addItem);
-
-function addItem(evento) {
-  evento.preventDefault();
-  
+export function criarItemDaLista(item){
   const itemDaLista = document.createElement("li");
   const containerItemLista = document.createElement("div");
   containerItemLista.classList.add("item-lista-container");
@@ -27,6 +21,21 @@ function addItem(evento) {
   const checkboxLabel = document.createElement("label");
   checkboxLabel.setAttribute("for", checkboxInput.id);
 
+  checkboxLabel.addEventListener("click", function (evento) {
+    const checkboxInput = evento.currentTarget.querySelector(".checkbox-input")
+    const checkboxCustomizado = evento.currentTarget.querySelector(".checkbox-customizado");
+    const itemTitulo = evento.currentTarget.closest("li").querySelector("#item-titulo");
+    if (checkboxInput.checked){
+      checkboxCustomizado.classList.add("checked");
+      itemTitulo.style.textDecoration = "line-through";
+      listaComprados.appendChild(itemDaLista);
+    } else{
+      checkboxCustomizado.classList.remove("checked");
+      listaDeCompras.appendChild(itemDaLista);
+      itemTitulo.style.textDecoration = "none";
+    }
+  });
+
   const checkboxCustomizado = document.createElement("div");
   checkboxCustomizado.classList.add("checkbox-customizado");
 
@@ -36,9 +45,9 @@ function addItem(evento) {
   containerCheckbox.appendChild(checkboxLabel);
   containerNomeDoItem.appendChild(containerCheckbox);
 
-
   const nomeDoItem = document.createElement("p");
-  nomeDoItem.innerText = item.value;
+  nomeDoItem.id = "item-titulo";
+  nomeDoItem.innerText = item;
   containerNomeDoItem.appendChild(nomeDoItem);
 
   const containerBotoes = document.createElement("div");
@@ -61,7 +70,12 @@ function addItem(evento) {
   containerItemLista.appendChild(containerNomeDoItem);
   containerItemLista.appendChild(containerBotoes);
 
-  itemDaLista.appendChild(containerItemLista);
-  listaDeCompras.appendChild(itemDaLista);
-}
+  const itemData = document.createElement("p");
+  itemData.innerText = `${new Date().toLocaleDateString("pt-BR", { weekday: "long"})} (${new Date().toLocaleDateString()}) às ${new Date().toLocaleTimeString("pt-BR", {hour: "numeric", minute: "numeric"})}`;
+  itemData.classList.add("texto-data");
 
+  itemDaLista.appendChild(containerItemLista);
+  itemDaLista.appendChild(itemData);
+
+  return itemDaLista;
+}
