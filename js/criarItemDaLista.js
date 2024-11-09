@@ -1,4 +1,10 @@
+import { editarItem } from "./editarItem.js";
+import { excluirItem } from "./excluirItem.js";
+import { gerarDiaDaSemana } from "./gerarDiaDaSemana.js";
+import { verificarListaComprados } from "./verificarListaComprados.js";
+
 const listaComprados = document.getElementById("lista-comprados");
+const listaDeCompras = document.getElementById("lista-de-compras");
 let contador = 0;
 
 export function criarItemDaLista(item){
@@ -7,11 +13,10 @@ export function criarItemDaLista(item){
   containerItemLista.classList.add("item-lista-container");
 
   const containerNomeDoItem = document.createElement("div");
-  containerNomeDoItem.classList.add("container-nome-compra");
+  
 
   const containerCheckbox = document.createElement("div");
   containerCheckbox.classList.add("checkbox-container");
-  
 
   const checkboxInput = document.createElement("input");
   checkboxInput.type = "checkbox";
@@ -34,6 +39,8 @@ export function criarItemDaLista(item){
       listaDeCompras.appendChild(itemDaLista);
       itemTitulo.style.textDecoration = "none";
     }
+
+    verificarListaComprados(listaComprados)
   });
 
   const checkboxCustomizado = document.createElement("div");
@@ -53,7 +60,7 @@ export function criarItemDaLista(item){
   const containerBotoes = document.createElement("div");
   const botaoRemover = document.createElement("button");
   const botaoEdit = document.createElement("button");
-  botaoEdit.classList.add("button-action");
+  botaoEdit.classList.add("button-action")
   botaoRemover.classList.add("button-action");
   const imagemRemover = document.createElement("img");
   const imagemEdit = document.createElement("img");
@@ -61,6 +68,14 @@ export function criarItemDaLista(item){
   imagemRemover.alt = "Remover";
   imagemEdit.src = "/img/edit.svg";
   imagemEdit.alt = "Editar";
+
+  botaoEdit.addEventListener("click", function() {
+    editarItem(itemDaLista);
+  })
+
+  botaoRemover.addEventListener("click", function (){
+    excluirItem(itemDaLista);
+  })
 
   botaoRemover.appendChild(imagemRemover);
   botaoEdit.appendChild(imagemEdit);
@@ -71,7 +86,7 @@ export function criarItemDaLista(item){
   containerItemLista.appendChild(containerBotoes);
 
   const itemData = document.createElement("p");
-  itemData.innerText = `${new Date().toLocaleDateString("pt-BR", { weekday: "long"})} (${new Date().toLocaleDateString()}) às ${new Date().toLocaleTimeString("pt-BR", {hour: "numeric", minute: "numeric"})}`;
+  itemData.innerText = gerarDiaDaSemana();
   itemData.classList.add("texto-data");
 
   itemDaLista.appendChild(containerItemLista);
